@@ -10,7 +10,7 @@ public class Day_2_Test {
     File file = new File("src/main/inputs/day_2.txt");
     List<String> passes = Day_2.readStringLinesFromFile(file);
 
-    
+
     @Test
     public void canReturnAmountOfValidEntries() {
         assertThat(Day_2.task1(passes)).isEqualTo(506);
