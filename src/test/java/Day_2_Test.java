@@ -1,4 +1,5 @@
 import org.junit.Test;
+import utils.FileReaderUtil;
 
 import java.io.*;
 import java.util.*;
@@ -8,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class Day_2_Test {
 
     File file = new File("src/main/inputs/day_2.txt");
-    List<String> passes = Day_2.readStringLinesFromFile(file);
+    List<String> passes = FileReaderUtil.readStringLinesFromFile(file);
 
 
     @Test

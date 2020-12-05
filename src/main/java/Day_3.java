@@ -1,3 +1,5 @@
+import utils.FileReaderUtil;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -9,9 +11,9 @@ public class Day_3 {
 
     public Day_3() {
         File file = new File("src/main/inputs/day_3.txt");
-        List<String> treePattern = readStringLinesFromFile(file);
+        List<String> treePattern = FileReaderUtil.readStringLinesFromFile(file);
         printOutTreePattern(treePattern);
-        treePatternSolution(treePattern);
+        treePatternSolution_1(treePattern);
     }
 
 
@@ -19,7 +21,7 @@ public class Day_3 {
         return passes;
     }
 
-    public static int treePatternSolution(List<String> lines) {
+    public static int treePatternSolution_1(List<String> lines) {
 
         int treeCount = 0;
 
@@ -28,7 +30,7 @@ public class Day_3 {
         int x = lines.get(0).length();
 
         while(Y < lines.size()) {
-            X %= x; 
+            X %= x;
             String row = lines.get(Y);
             char c = row.charAt(X);
             if (c == '#') treeCount++;
@@ -39,30 +41,32 @@ public class Day_3 {
         return treeCount;
     }
 
+    public static long treePatternSolution_2(List<String> lines) {
 
-    public static List<String> readStringLinesFromFile(File file) {
-        List<String> lines = new ArrayList<>();
-        BufferedReader reader = null;
+        int[] xArray = {1,3,5,7,1};
+        int[] yArray = {1,1,1,1,2};
+        int x = lines.get(0).length();
 
-        try {
-            reader = new BufferedReader(new FileReader(file));
-            String text = reader.readLine();
-            while (text != null)
-                lines.add(text);
-                text = reader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (reader != null)
-                    reader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+        long result = 1;
+
+        for (int i = 0; i < xArray.length; i++) {
+            int X = xArray[i];
+            int xInc = xArray[i];
+            int Y = yArray[i];
+            int yInc = yArray[i];
+            int treeCount = 0;
+            while (Y < lines.size()) {
+                X %= x;
+                String row = lines.get(Y);
+                char c = row.charAt(X);
+                if (c == '#') treeCount++;
+
+                X += xInc;
+                Y += yInc;
             }
+            result *= treeCount;
         }
-
-        return lines;
-
+        return result;
     }
 
 }

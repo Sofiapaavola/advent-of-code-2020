@@ -1,13 +1,13 @@
+import utils.FileReaderUtil;
+
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Day_2 {
 
     public Day_2() {
         File file = new File("src/main/inputs/day_2.txt");
-        List<String> passes = readStringLinesFromFile(file);
-
+        List<String> passes = FileReaderUtil.readStringLinesFromFile(file);
         task1(passes);
         task2(passes);
     }
@@ -54,29 +54,6 @@ public class Day_2 {
     return count;
     }
 
-    public static List<String> readStringLinesFromFile(File file) {
-        List<String> list = new ArrayList<>();
-        BufferedReader reader = null;
-
-        try {
-            reader = new BufferedReader(new FileReader(file));
-            String text;
-            while ((text = reader.readLine()) != null)
-                list.add(text);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (reader != null)
-                    reader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return list;
-
-    }
 
     /* Checks if a String is empty ("") or null. */
     public static boolean isEmpty(String s) {
